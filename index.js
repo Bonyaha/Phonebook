@@ -4,6 +4,9 @@ app.use(express.json()) //transforms JSON data of a request into a JavaScript ob
 
 const cors = require('cors')
 app.use(cors())
+
+app.use(express.static('build'))
+
 const morgan = require('morgan')
 
 // Logging middleware based on the tiny configuration.
