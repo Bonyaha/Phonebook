@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 app.use(express.json()) //transforms JSON data of a request into a JavaScript object and then attaches it to the body property of the request object before the route handler is called
+
+const cors = require('cors')
+app.use(cors())
 const morgan = require('morgan')
 
 // Logging middleware based on the tiny configuration.
