@@ -1,7 +1,5 @@
 <!-- starting server -->
 
-test3
-
 1. npm start(normal start)
 2. npm run dev (start with nodemon for restarting it when changes are made)
 3. npm test (for testing)
