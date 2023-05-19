@@ -40,6 +40,5 @@ In summary, this command sequence removes the existing `build` folder from the b
 node mongo.js password - command for adding a new document to the database (instead 'password' word paste your password from mongo db)
 
 MongoDb:
-Roman
-5dT2Z37kDLZxx0dW
-mongodb+srv://Roman:<password>@cluster1.d7mltpu.mongodb.net/?retryWrites=true&w=majority (Replace <password> with the password for the Roman user)
+url for connection:
+mongodb+srv://Roman:`<password>`@cluster1.d7mltpu.mongodb.net/?retryWrites=true&w=majority (Replace `<password>` with the password for the Roman user)
