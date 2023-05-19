@@ -37,7 +37,7 @@ In summary, this command sequence removes the existing `build` folder from the b
 
 ### the second command (npm run deploy:full) run the first one and commit it to remote git repo
 
-node mongo.js password - command for adding a new document to the database (instead 'password' word paste your password from mongo db)
+node mongo.js password - command for interacting with the database (instead 'password' word paste your password from mongo db)
 
 MongoDb:
 url for connection:
