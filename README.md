@@ -36,3 +36,10 @@ A: Let's break down the command step by step:
 In summary, this command sequence removes the existing `build` folder from the backend, builds the frontend by running the `build` script in the frontend repository, and then copies the generated `build` folder to the backend directory. This allows you to automate the process of creating a production build of the frontend and integrating it with the backend without requiring manual steps.
 
 ### the second command (npm run deploy:full) run the first one and commit it to remote git repo
+
+node mongo.js password - command for adding a new document to the database (instead 'password' word paste your password from mongo db)
+
+MongoDb:
+Roman
+5dT2Z37kDLZxx0dW
+mongodb+srv://Roman:<password>@cluster1.d7mltpu.mongodb.net/?retryWrites=true&w=majority (Replace <password> with the password for the Roman user)
