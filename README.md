@@ -42,4 +42,3 @@ node mongo.js password - command for interacting with the database (instead 'pas
 MongoDb:
 url for connection:
 mongodb+srv://Roman:`<password>`@cluster1.d7mltpu.mongodb.net/?retryWrites=true&w=majority (Replace `<password>` with the password for the Roman user)
-test
