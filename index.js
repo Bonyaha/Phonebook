@@ -9,7 +9,10 @@ const errorHandler = (error, request, response, next) => {
   console.log(error.message)
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
   }
+
   next(error)
 }
 const unknownEndpoint = (request, response) => {
@@ -56,7 +59,7 @@ app.get('/info', (request, response) => {
     })
 })
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
 
   if (!body.name && !body.number) {
@@ -72,17 +75,16 @@ app.post('/api/persons', (request, response) => {
       error: 'The number is missing.',
     })
   }
-  Person.exists({ name: body.name })
-    .then((nameExists) => {
-      if (nameExists) {
-        return response.status(400).json({ error: 'name must be unique' })
-      }
-      const person = new Person({
-        name: body.name,
-        number: body.number,
-      })
-      person.save().then((contact) => response.json(contact))
-    })
+
+  const person = new Person({
+    name: body.name,
+    number: body.number,
+  })
+  person
+    .save()
+    .then((contact) => response.json(contact))
+    .catch((error) => next(error))
+
     .catch((error) => {
       console.error(error)
       response.status(500).send('Internal Server Error')
@@ -98,11 +100,28 @@ app.delete('/api/persons/:id', (request, response, next) => {
 })
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
+  if (!body.name && !body.number) {
+    return response.status(400).json({
+      error: 'Fill in all information, please.',
+    })
+  } else if (!body.name) {
+    return response.status(400).json({
+      error: 'The name is missing.',
+    })
+  } else if (!body.number) {
+    return response.status(400).json({
+      error: 'The number is missing.',
+    })
+  }
   const person = {
     name: body.name,
     number: body.number,
   }
-  Person.findByIdAndUpdate(request.params.id, person, { new: true })
+  Person.findByIdAndUpdate(request.params.id, person, {
+    new: true,
+    runValidators: true,
+    context: 'query',
+  })
     .then((updatedContact) => response.json(updatedContact))
     .catch((error) => next(error))
 })

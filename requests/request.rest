@@ -11,3 +11,12 @@ content-type: application/json
 
 ###
 DELETE http://localhost:3001/api/persons/5 HTTP/1.1
+
+###
+PUT http://localhost:3001/api/persons/646ca7201cad4ee4fc04ba3a HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Sasha",
+    "number": "040-127893456"
+}
