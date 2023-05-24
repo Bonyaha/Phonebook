@@ -47,16 +47,13 @@ app.get('/api/persons/:id', (request, response, next) => {
     })
     .catch((error) => next(error))
 })
-app.get('/info', (request, response) => {
+app.get('/info', (request, response, next) => {
   Person.countDocuments({})
     .then((count) => {
       response.send(`<h3>Phonebook has info for ${count} people</h3>
         <p>${new Date()}</p> `)
     })
-    .catch((err) => {
-      console.log(err)
-      response.status(500).send('Internal Server Error')
-    })
+    .catch((error) => next(error))
 })
 
 app.post('/api/persons', (request, response, next) => {
@@ -84,11 +81,6 @@ app.post('/api/persons', (request, response, next) => {
     .save()
     .then((contact) => response.json(contact))
     .catch((error) => next(error))
-
-    .catch((error) => {
-      console.error(error)
-      response.status(500).send('Internal Server Error')
-    })
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
