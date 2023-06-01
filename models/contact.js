@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const contactSchema = new mongoose.Schema({
-  name: { type: String, minLength: 3, required: true, unique: true },
+  name: { type: String, minLength: 3, required: true },
   number: {
     type: String,
     validate: {
